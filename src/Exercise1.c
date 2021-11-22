@@ -12,86 +12,124 @@
 
 void Ex1(int n){
 	//Your codes here
-	int len = strlen(num);
-        
- 
+	int thsand,hdred,ty,teen;
+	if (n > 9999) printf("TRY AGAIN");
+	else
+	 {
+	if (n >= 1000) {
+		thsand = n/1000;
+		Ex1(thsand);
+		printf(" thousand ");
+		}
+		 else thsand = 0;
 
-    if (len == 0) {
-        fprintf(stderr, "empty string\n");
-        return;
-    }
-    if (len > 4) {
-        fprintf(stderr,
-                "Length more than 4 is not supported\n");
-        return;
-    }
- 
-    
-    char* single_digits[]
-        = { "zero", "one", "two",   "three", "four",
-            "five", "six", "seven", "eight", "nine" };
- 
-    
-    char* two_digits[]
-        = { "",          "ten",      "eleven",  "twelve",
-            "thirteen",  "fourteen", "fifteen", "sixteen",
-            "seventeen", "eighteen", "nineteen" };
- 
-   
-    char* tens_multiple[] = { "",       "",        "twenty",
-                              "thirty", "forty",   "fifty",
-                              "sixty",  "seventy", "eighty",
-                              "ninety" };
- 
-    char* tens_power[] = { "hundred", "thousand" };
- 
-    
-    printf("\n%s: ", num);
- 
-    
-    if (len == 1) {
-        printf("%s\n", single_digits[*num - '0']);
-        return;
-    }
- 
-   
-    while (*num != '\0') {
- 
-        if (len >= 3) {
-            if (*num - '0' != 0) {
-                printf("%s ", single_digits[*num - '0']);
-                printf("%s ",
-                       tens_power[len - 3]); 
-            }
-            --len;
-        }
- 
-       
-        else {
-            
-            if (*num == '1') {
-                int sum = *num - '0' + *(num + 1) - '0';
-                printf("%s\n", two_digits[sum]);
-                return;
-            }
- 
-            
-            else if (*num == '2' && *(num + 1) == '0') {
-                printf("twenty\n");
-                return;
-            }
- 
-            else {
-                int i = *num - '0';
-                printf("%s ", i ? tens_multiple[i] : "");
-                ++num;
-                if (*num != '0')
-                    printf("%s ",
-                           single_digits[*num - '0']);
-            }
-        }
-        ++num;
-    }
+	if (n >= 100) {
+		hdred = (n-thsand*1000)/100;
+		Ex1(hdred);
+		printf (" hundred ");
+		} 
+		else hdred = 0;
+
+	
+	if (n >= 10) {
+		ty = (n-thsand*1000-hdred*100)/10;
+		if ((n-thsand*1000-hdred*100) >= 20 || ty == 0) {
+		switch(ty) {
+		case 9: 
+			printf("ninty ");
+			break;
+		case 8: 
+			printf("eighty ");
+			break;
+		case 7: 
+			printf("seventy ");
+			break;
+		case 6: 
+			printf("sixty ");
+			break;
+		case 5: 
+			printf("fifty ");
+			break;
+		case 4: 
+			printf("four ");
+			break;
+		case 3: 
+			printf("thirty ");
+			break;
+		case 2:
+			printf("twenty ");
+			break;
+		}
+		teen = n-1000*thsand-100*hdred-ty*10;
+		Ex1(teen);
+
+		} else if (ty== 1) {
+			ty = (n-thsand*1000-hdred*100);
+			switch(ty) {
+				case 10:
+					printf("ten");
+					break;
+				case 11:
+					printf("eleven");
+					break;
+				case 12:
+					printf("twelve");
+					break;
+				case 13:
+					printf("thirteen");
+					break;
+				case 14:
+					printf("fourteen");
+					break;
+				case 15:
+					printf("fifteen ");
+					break;
+				case 16:
+					printf("sixteen");
+					break;
+				case 17:
+					printf("seventeen");
+					break;
+				case 18:
+					printf("eighteen");
+					break;
+				case 19:
+					printf("ninteen");
+					break;
+			}
+		}
+	}
+	
+	switch(n) {
+		case 9: 
+			printf("nine");
+			break;
+		case 8: 
+			printf("eight");
+			break;
+		case 7: 
+			printf("seven");
+			break;
+		case 6: 
+			printf("six");
+			break;
+		case 5: 
+			printf("five");
+			break;
+		case 4: 
+			printf("four");
+			break;
+		case 3: 
+			printf("three");
+			break;
+		case 2:
+			printf("two");
+			break;
+		case 1: 
+			printf("one");
+			break;
+		}	
+	}
 }
 
 int main(int argc, char *argv[]) {
